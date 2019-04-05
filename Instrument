@@ -1,0 +1,15 @@
+package instruments;
+import java.awt.event.*;
+
+public interface Instrument{
+
+	
+	
+	
+	public static void getName(){
+		 
+	}
+
+	
+
+}
