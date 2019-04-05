@@ -1,0 +1,43 @@
+package instruments;
+
+import java.awt.event.*;
+
+
+public class BassDrum implements Instrument{
+	
+	private int key;
+	private static KeyEvent KeyEvent;
+	private MyKeyListener keys;
+	private String name = "Bass Drum";
+	
+	
+	public String getName(){
+		return this.name;
+	}
+	
+	public void addKey(KeyEvent e){
+
+		keys.keyPressed(e);
+	}
+	
+
+	public static void main(String[] args){
+		BassDrum Bass = new BassDrum();
+		Bass.addKey(KeyEvent);
+		
+		
+	}
+	private class TAdapter extends KeyAdapter {
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+            keys.keyReleased(e);
+        }
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+            keys.keyPressed(e);
+        }
+    }
+
+}
