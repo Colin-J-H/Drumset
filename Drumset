@@ -1,0 +1,59 @@
+package instruments;
+
+import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+
+public class Drumset {
+	MyKeyListener keys = new MyKeyListener();
+	ArrayList<Integer> key = keys.getKey();
+	ArrayList<String> instrument = new ArrayList<String>();
+	
+	public int size(){
+		return instrument.size();
+	}
+	
+	public void findInstrument(){
+		
+		for (int i = 0; i < key.size(); i++ ){
+//			bass
+			if (key.get(i) == (KeyEvent.VK_B)){
+				instrument.add("b");
+			}
+//			hi-hat
+			else if (key.get(i) == (KeyEvent.VK_H)){
+				instrument.add("h");
+			}
+//			crash cymbal
+			else if (key.get(i) == (KeyEvent.VK_C)){
+				instrument.add("c");
+			}
+//			floor tom
+			else if (key.get(i) == (KeyEvent.VK_F)){
+				instrument.add("F");
+			}
+//			high tom
+			else if (key.get(i) == (KeyEvent.VK_T)){
+				instrument.add("t");
+			}
+//			low tom
+			else if (key.get(i) == (KeyEvent.VK_L)){
+				instrument.add("l");
+			}
+//			ride cymbal
+			else if (key.get(i) == (KeyEvent.VK_R)){
+				instrument.add("r");
+			}
+		}
+	}
+	public static void main(String[] args){
+		Drumset drums = new Drumset();
+		boolean a = true;
+		while (a){
+		drums.findInstrument();
+		if (drums.size() > 10){
+			a = false;
+		}
+		}
+		}
+		
+}
