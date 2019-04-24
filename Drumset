@@ -1,16 +1,46 @@
 package instruments;
 
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
 
-public class Drumset {
-	MyKeyListener keys = new MyKeyListener();
-	ArrayList<Integer> key = keys.getKey();
-	ArrayList<String> instrument = new ArrayList<String>();
+import javax.swing.*;
+
+public class Drumset extends Canvas implements Runnable{
 	
-	public int size(){
-		return instrument.size();
+	static KeyEvent keyevent;
+	static MyKeyListener keys = new MyKeyListener();
+	static ArrayList<String> instrument = new ArrayList<String>();//collects key inputs
+	public static final int width = 800, height = width;
+	public Thread thread;
+	public boolean running = false;
+	ArrayList<Integer> key = keys.getKey();
+	
+	
+	public Drumset(){
+		new Window(width,height,"Drumset", this);
 	}
+	
+	
+	public synchronized void start(){
+		thread = new Thread(this);
+		thread.start();
+		running = true;
+	}
+	
+	public synchronized void stop(){
+		try{
+			thread.join();
+			running = false;
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+
+	
 	
 	public void findInstrument(){
 		
@@ -45,15 +75,58 @@ public class Drumset {
 			}
 		}
 	}
-	public static void main(String[] args){
-		Drumset drums = new Drumset();
-		boolean a = true;
-		while (a){
-		drums.findInstrument();
-		if (drums.size() > 10){
-			a = false;
+	
+	
+	public void run() {
+		long lastTime = System.nanoTime();
+		double amountofticks = 60.0;
+		double ns = 1000000000 / amountofticks;
+		double delta = 0;
+		long timer = System.currentTimeMillis();
+		int frames = 0;
+		while(running){
+			long now = System.nanoTime();
+			delta += (now - lastTime) / ns;
+			lastTime = now;
+			while (delta>= 1){
+				tick();
+				delta--;
+			}
+		findInstrument();
+		if(running){
+			render();
+			frames ++;
+		}
+		if (System.currentTimeMillis() - timer > 1000){
+			timer += 1000;
+			System.out.println("FPS: " + frames);
+			frames = 0;
 		}
 		}
-		}
+		stop();
 		
+	}
+	
+	public void tick(){
+		
+	}
+	
+	public void render(){
+		BufferStrategy buffer = this.getBufferStrategy();
+		if (buffer == null){
+			this.createBufferStrategy(3);
+			return;
+		}
+		Graphics pen = buffer.getDrawGraphics();
+		
+		pen.setColor(Color.black);
+		pen.fillRect(0,0,width,height);
+		
+		buffer.show();
+		System.out.println(keys.getKey());
+	}
+	public static void main(String args[]){
+		new Drumset();
+		
+	}
 }
