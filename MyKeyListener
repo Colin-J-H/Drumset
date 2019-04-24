@@ -6,10 +6,15 @@ import java.util.ArrayList;
 
 public class MyKeyListener implements KeyListener {
 	private ArrayList<Integer> keyInstruments = new ArrayList<Integer>();
-	public MyKeyListener() {}
+	public ArrayList<Character> LIST = new ArrayList<Character>();
+	
+	public MyKeyListener() {
+		LIST.add('x');
+	}
 	
 	public void keyPressed(KeyEvent e) {
-		if(!keyInstruments.contains(e.getKeyCode())) {
+		LIST.add(e.getKeyChar());
+		if(LIST.contains(e.getKeyCode())) {
 			keyInstruments.add(e.getKeyCode());
 		}
 	}
@@ -21,6 +26,9 @@ public class MyKeyListener implements KeyListener {
 				return;
 			}
 		}
+	}
+	public int getSize(){
+		return keyInstruments.size();
 	}
 	
 	public void keyTyped(KeyEvent e) {
