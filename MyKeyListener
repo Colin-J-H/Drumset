@@ -5,23 +5,49 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 public class MyKeyListener implements KeyListener {
-	private ArrayList<Integer> keyInstruments = new ArrayList<Integer>();
-	public ArrayList<Character> LIST = new ArrayList<Character>();
+	
+	private ArrayList<Character> keyInstruments = new ArrayList<Character>();
 	
 	public MyKeyListener() {
-		LIST.add('x');
 	}
 	
 	public void keyPressed(KeyEvent e) {
-		LIST.add(e.getKeyChar());
-		if(LIST.contains(e.getKeyCode())) {
-			keyInstruments.add(e.getKeyCode());
+		int key = e.getKeyCode();
+		System.out.println(key);
+//			bass
+			if (key == (KeyEvent.VK_B)){
+				keyInstruments.add('b');
+			}
+//			hi-hat
+			else if (key == (KeyEvent.VK_H)){
+				keyInstruments.add('h');
+			}
+//			crash cymbal
+			else if (key == (KeyEvent.VK_C)){
+				keyInstruments.add('c');
+			}
+//			floor tom
+			else if (key == (KeyEvent.VK_F)){
+				keyInstruments.add('f');
+			}
+//			high tom
+			else if (key == (KeyEvent.VK_T)){
+				keyInstruments.add('t');
+			}
+//			low tom
+			else if (key == (KeyEvent.VK_L)){
+				keyInstruments.add('l');
+			}
+//			ride cymbal
+			else if (key == (KeyEvent.VK_R)){
+				keyInstruments.add('r');
+			}
 		}
-	}
+	
 	
 	public void keyReleased(KeyEvent e) {
 		for(int c = 0; c < keyInstruments.size(); c++) {
-			if(keyInstruments.get(c) == e.getKeyCode()) {
+			if(keyInstruments.get(c) == e.getKeyChar()) {
 				keyInstruments.remove(c);
 				return;
 			}
@@ -34,7 +60,7 @@ public class MyKeyListener implements KeyListener {
 	public void keyTyped(KeyEvent e) {
 	}
 	
-	public ArrayList<Integer> getKey() {
+	public ArrayList<Character> getKey() {
 		return keyInstruments;
 	}
 }
