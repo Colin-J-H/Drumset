@@ -3,13 +3,14 @@ package instruments;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.KeyEventDispatcher;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
 
 import javax.swing.*;
 
-public class Drumset extends Canvas implements Runnable{
+public class Drumset extends Canvas  implements Runnable{
 	
 	static KeyEvent keyevent;
 	static MyKeyListener keys = new MyKeyListener();
@@ -17,11 +18,12 @@ public class Drumset extends Canvas implements Runnable{
 	public static final int width = 800, height = width;
 	public Thread thread;
 	public boolean running = false;
-	ArrayList<Integer> key = keys.getKey();
 	
 	
 	public Drumset(){
+		this.addKeyListener(new MyKeyListener());
 		new Window(width,height,"Drumset", this);
+		
 	}
 	
 	
@@ -44,36 +46,6 @@ public class Drumset extends Canvas implements Runnable{
 	
 	public void findInstrument(){
 		
-		for (int i = 0; i < key.size(); i++ ){
-//			bass
-			if (key.get(i) == (KeyEvent.VK_B)){
-				instrument.add("b");
-			}
-//			hi-hat
-			else if (key.get(i) == (KeyEvent.VK_H)){
-				instrument.add("h");
-			}
-//			crash cymbal
-			else if (key.get(i) == (KeyEvent.VK_C)){
-				instrument.add("c");
-			}
-//			floor tom
-			else if (key.get(i) == (KeyEvent.VK_F)){
-				instrument.add("F");
-			}
-//			high tom
-			else if (key.get(i) == (KeyEvent.VK_T)){
-				instrument.add("t");
-			}
-//			low tom
-			else if (key.get(i) == (KeyEvent.VK_L)){
-				instrument.add("l");
-			}
-//			ride cymbal
-			else if (key.get(i) == (KeyEvent.VK_R)){
-				instrument.add("r");
-			}
-		}
 	}
 	
 	
@@ -123,7 +95,7 @@ public class Drumset extends Canvas implements Runnable{
 		pen.fillRect(0,0,width,height);
 		
 		buffer.show();
-		System.out.println(keys.getKey());
+		
 	}
 	public static void main(String args[]){
 		new Drumset();
