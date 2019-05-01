@@ -1,14 +1,21 @@
 package instruments;
 
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.GraphicsConfiguration;
+import java.awt.image.BufferStrategy;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
+@SuppressWarnings("unused")
 public class Window {
-
+	private MyKeyListener listen = new MyKeyListener();
 	public Window(int width, int height, String title, Drumset drumset){
 		JFrame frame = new JFrame(title);
+
 		
 		frame.setMinimumSize(new Dimension(width,height));
 		frame.setMaximumSize(new Dimension(width,height));
@@ -20,7 +27,28 @@ public class Window {
 		frame.setLocationRelativeTo(null);
 		frame.add(drumset);
 		frame.setVisible(true);
+		frame.addKeyListener(listen);
 		
-		drumset.start();
+		BufferStrategy buffer = frame.getBufferStrategy();
+		if (buffer == null){
+			frame.createBufferStrategy(3);
+			return;
+		}
+		Graphics pen = buffer.getDrawGraphics();
+		
+		pen.setColor(Color.black);
+		pen.fillRect(0,0,width,height);
+		
+		buffer.show();
+	}
+	
+	
+
+	public ArrayList<Character> getKey(){
+		return listen.getKey();
+	}
+	
+	public void addImage(){
+		
 	}
 }
