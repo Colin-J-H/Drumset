@@ -1,47 +1,154 @@
 package instruments;
 
+import java.applet.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.*;
+import java.net.*;
 import java.util.ArrayList;
 
 public class MyKeyListener implements KeyListener {
 	
 	private ArrayList<Character> keyInstruments = new ArrayList<Character>();
 	
-	public MyKeyListener() {
+	
+	public void playSound(){
+		
 	}
 	
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
-		System.out.println(key);
+		
 //			bass
 			if (key == (KeyEvent.VK_B)){
 				keyInstruments.add('b');
+//				System.out.println("bass");
+				try{
+					File file = new File("./Sound/bass.aif");
+					URL url = null;
+					if (file.canRead()){
+						url = file.toURI().toURL();
+					}
+					AudioClip sound = Applet.newAudioClip(url);
+					sound.play();
+				} catch(Exception e1){
+					
+				}
+			
+			}
+//			snare
+			else if (key == (KeyEvent.VK_S)){
+				keyInstruments.add('s');
+//				System.out.println("snare");	
+				try{
+					File file = new File("./Sound/snare.wav");
+					URL url = null;
+					if (file.canRead()){
+						url = file.toURI().toURL();
+					}
+					AudioClip sound = Applet.newAudioClip(url);
+					sound.play();
+				} catch(Exception e1){
+					
+				}
 			}
 //			hi-hat
 			else if (key == (KeyEvent.VK_H)){
 				keyInstruments.add('h');
+//				System.out.println("hi hat");	
+				try{
+					File file = new File("./Sound/hihat.wav");
+					URL url = null;
+					if (file.canRead()){
+						url = file.toURI().toURL();
+					}
+					AudioClip sound = Applet.newAudioClip(url);
+					sound.play();
+				} catch(Exception e1){
+					
+				}
 			}
 //			crash cymbal
 			else if (key == (KeyEvent.VK_C)){
 				keyInstruments.add('c');
+//				System.out.println("crash");
+				try{
+					File file = new File("./Sound/crashcymbal.wav");
+					URL url = null;
+					if (file.canRead()){
+						url = file.toURI().toURL();
+					}
+					AudioClip sound = Applet.newAudioClip(url);
+					sound.play();
+				} catch(Exception e1){
+					
+				}
 			}
 //			floor tom
 			else if (key == (KeyEvent.VK_F)){
 				keyInstruments.add('f');
+//				System.out.println("floor tom");	
+				try{
+					File file = new File("./Sound/floortom.wav");
+					URL url = null;
+					if (file.canRead()){
+						url = file.toURI().toURL();
+					}
+					AudioClip sound = Applet.newAudioClip(url);
+					sound.play();
+				} catch(Exception e1){
+					
+				}
 			}
 //			high tom
 			else if (key == (KeyEvent.VK_T)){
 				keyInstruments.add('t');
+//				System.out.println("high tom");	
+				try{
+					File file = new File("./Sound/hightom.wav");
+					URL url = null;
+					if (file.canRead()){
+						url = file.toURI().toURL();
+					}
+					AudioClip sound = Applet.newAudioClip(url);
+					sound.play();
+				} catch(Exception e1){
+					
+				}
 			}
 //			low tom
 			else if (key == (KeyEvent.VK_L)){
 				keyInstruments.add('l');
+//				System.out.println("low tom");
+				try{
+					File file = new File("./Sound/lowtom.wav");
+					URL url = null;
+					if (file.canRead()){
+						url = file.toURI().toURL();
+					}
+					AudioClip sound = Applet.newAudioClip(url);
+					sound.play();
+				} catch(Exception e1){
+					
+				}
 			}
 //			ride cymbal
 			else if (key == (KeyEvent.VK_R)){
 				keyInstruments.add('r');
+//				System.out.println("ride cymbal");	
+				try{
+					File file = new File("./Sound/ridecymbal.wav");
+					URL url = null;
+					if (file.canRead()){
+						url = file.toURI().toURL();
+					}
+					AudioClip sound = Applet.newAudioClip(url);
+					sound.play();
+				} catch(Exception e1){
+					
+				}
 			}
+		
 		}
 	
 	
