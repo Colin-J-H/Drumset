@@ -29,17 +29,6 @@ public class Window {
 		frame.setVisible(true);
 		frame.addKeyListener(listen);
 		
-		BufferStrategy buffer = frame.getBufferStrategy();
-		if (buffer == null){
-			frame.createBufferStrategy(3);
-			return;
-		}
-		Graphics pen = buffer.getDrawGraphics();
-		
-		pen.setColor(Color.black);
-		pen.fillRect(0,0,width,height);
-		
-		buffer.show();
 	}
 	
 	
@@ -48,7 +37,4 @@ public class Window {
 		return listen.getKey();
 	}
 	
-	public void addImage(){
-		
-	}
 }
