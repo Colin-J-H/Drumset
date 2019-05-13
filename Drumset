@@ -22,25 +22,6 @@ public class Drumset extends Canvas  {
 		
 	}
 	
-
-	public void tick(){
-		
-	}
-	
-	public void render(){
-		BufferStrategy buffer = this.getBufferStrategy();
-		if (buffer == null){
-			this.createBufferStrategy(3);
-			return;
-		}
-		Graphics pen = buffer.getDrawGraphics();
-		
-		pen.setColor(Color.black);
-		pen.fillRect(0,0,width,height);
-		
-		buffer.show();
-		
-	}
 	
 	public static void main(String args[]){
 		new Drumset();
